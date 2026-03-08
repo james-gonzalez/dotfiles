@@ -1,0 +1,73 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "amazon-bedrock/anthropic.claude-3-5-sonnet-20240620-v1:0",
+  "small_model": "amazon-bedrock/anthropic.claude-4-5-haiku",
+  "watcher": {
+    "ignore": [
+      "node_modules/**",
+      "dist/**",
+      ".git/**",
+      "build/**",
+      ".cache/**",
+      "coverage/**"
+    ]
+  },
+  "compaction": {
+    "auto": true,
+    "prune": true
+  },
+  "provider": {
+    "google": {
+      "options": {
+        "setCacheKey": true
+      }
+    },
+    "amazon-bedrock": {
+      "options": {
+        "setCacheKey": true
+      }
+    },
+    "anthropic": {
+      "options": {
+        "setCacheKey": true
+      }
+    },
+    "openai": {
+      "options": {
+        "setCacheKey": true
+      }
+    }
+  },
+  "mcp": {
+    "context7": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@upstash/context7-mcp"
+      ],
+      "enabled": true
+    },
+    "sequential-thinking": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ],
+      "enabled": true
+    },
+    "server-memory": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-memory"
+      ],
+      "enabled": true
+    }
+  },
+  "plugin": [
+    "oh-my-opencode-slim"
+  ]
+}

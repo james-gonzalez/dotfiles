@@ -1,0 +1,79 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "amazon-bedrock/anthropic.claude-sonnet-4-6",
+  "small_model": "amazon-bedrock/anthropic.claude-haiku-4-5-20251001-v1:0",
+  "watcher": {
+    "ignore": [
+      "node_modules/**",
+      "dist/**",
+      ".git/**",
+      "build/**",
+      ".cache/**",
+      "coverage/**",
+      ".slim/**"
+    ]
+  },
+  "compaction": {
+    "auto": true,
+    "prune": true,
+    "reserved": 8000
+  },
+  "provider": {
+    "amazon-bedrock": {
+      "options": {
+        "setCacheKey": true
+      }
+    },
+    "openai": {
+      "options": {
+        "setCacheKey": true
+      }
+    }
+  },
+  "mcp": {
+    "context7": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@upstash/context7-mcp"
+      ],
+      "enabled": true
+    },
+    "sequential-thinking": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ],
+      "enabled": true
+    },
+    "server-memory": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-memory"
+      ],
+      "enabled": true
+    }
+  },
+  "plugin": [
+    "oh-my-opencode-slim",
+    "@tarquinen/opencode-dcp",
+    "opencode-optimal-model-temps",
+    "opencode-context-analysis-plugin",
+    "@slkiser/opencode-quota",
+    "opencode-ignore",
+    "opencode-handoff"
+  ],
+  "agent": {
+    "explore": {
+      "disable": true
+    },
+    "general": {
+      "disable": true
+    }
+  }
+}

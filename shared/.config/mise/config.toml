@@ -1,0 +1,33 @@
+[tools]
+
+# Runtimes
+node = "lts"
+python = "latest"
+go = "latest"
+rust = "latest"
+
+# AI
+gemini-cli = "latest"
+claude-code = "latest"
+"npm:mcp-hub" = "latest"
+
+# CMS
+"npm:@sanity/cli" = "latest"
+"npm:sanity" = "latest"
+
+# AWS
+aws-cli = "latest"
+aws-vault = "latest"
+terraform = "latest"
+terragrunt = "latest"
+
+# Containers
+rancher = "latest"
+
+# Package managers
+pnpm = "latest"
+uv = "latest"
+yarn = "latest"
+
+[settings]
+idiomatic_version_file_enable_tools = ["python"]
