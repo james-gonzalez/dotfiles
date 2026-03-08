@@ -1,0 +1,27 @@
+[user]
+   name = 'James Gonzalez'
+   email = 'james@cultavix.com'
+	signingkey = A73A763511122A554CF5966999D096FA36CDAF9F
+
+[alias]
+   s = status
+   l = log --oneline
+   ac = commit --allow-empty-message -m ""
+
+[url "git@github.com:james-gonzalez/"]
+   insteadOf = https://github.com/james-gonzalez/
+[push]
+  autoSetupRemote = true
+[core]
+   pager = bat --style=\"changes\"
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[commit]
+	gpgsign = true
+[interactive-rebase-tool]
+	foregroundColor = black
+[sequence]
+	editor = interactive-rebase-tool

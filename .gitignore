@@ -1,0 +1,25 @@
+Brewfile.lock.json
+lazy-lock.json
+btop.log
+
+.config/github-copilot
+.config/nvm
+.config/op
+
+# Installed submodules
+shared/.config/tmux/plugins
+shared/.config/github-copilot
+
+# ncspot cache
+userstate.cbor
+
+# opencode runtime files
+shared/.config/opencode/node_modules
+shared/.config/opencode/package.json
+shared/.config/opencode/bun.lock
+shared/.config/opencode/.gitignore
+
+# private files
+work/
+secrets.zsh
+shared/.config/gh/hosts.yml

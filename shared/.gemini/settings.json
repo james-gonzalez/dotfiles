@@ -1,0 +1,19 @@
+{
+  "general": {
+    "preferredEditor": "neovim",
+    "previewFeatures": true,
+    "enablePromptCompletion": true
+  },
+  "security": {
+    "auth": {
+      "selectedType": "gemini-api-key"
+    }
+  },
+  "ui": {
+    "theme": "Default",
+    "showStatusInTitle": true
+  },
+  "output": {
+    "format": "text"
+  }
+}
