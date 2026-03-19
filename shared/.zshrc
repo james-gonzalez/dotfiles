@@ -100,9 +100,14 @@ zinit snippet OMZ::plugins/git-auto-fetch/git-auto-fetch.plugin.zsh
 zinit snippet OMZ::plugins/git-commit/git-commit.plugin.zsh
 zinit snippet OMZ::plugins/jump/jump.plugin.zsh
 zinit snippet OMZ::plugins/kubectl/kubectl.plugin.zsh
-zinit snippet OMZ::plugins/autojump/autojump.plugin.zsh
+# autojump replaced by zoxide
 
 ## TOOLS ##
+
+# GPG agent
+export GPG_TTY=$(tty)
+gpgconf --launch gpg-agent
+
 source <(fzf --zsh)
 eval "$(oh-my-posh init zsh --config $HOME/omp.yaml)"
 
@@ -154,6 +159,8 @@ tstat() { _tr --session-info; }
 tadd()  { _tr --add "$1"; }
 trem()  { _tr --torrent "$1" --remove; }
 tinfo() { _tr --torrent "$1" --info; }
+
+eval "$(zoxide init zsh --cmd cd)"
 
 ## SECRETS (API keys, tokens — never commit this file) ##
 [[ -f ~/.zsh_secrets ]] && source ~/.zsh_secrets
