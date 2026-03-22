@@ -162,5 +162,10 @@ tinfo() { _tr --torrent "$1" --info; }
 
 eval "$(zoxide init zsh --cmd cd)"
 
+export CLAUDE_CODE_USE_BEDROCK=1
+export AWS_REGION=eu-west-2
+
+export ANTHROPIC_SMALL_FAST_MODEL_AWS_REGION=us-west-2
+
 ## SECRETS (API keys, tokens — never commit this file) ##
 [[ -f ~/.zsh_secrets ]] && source ~/.zsh_secrets
