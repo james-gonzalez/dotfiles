@@ -14,6 +14,8 @@
   autoSetupRemote = true
 [core]
    pager = bat --style=\"changes\"
+[pager]
+   diff = bat
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
