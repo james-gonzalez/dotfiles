@@ -35,7 +35,9 @@ dotfiles/
 │       └── tmux/         # macOS tmux keybindings
 └── linux/                # Linux-specific overrides
     └── .config/
-        └── tmux/         # Linux tmux keybindings
+        ├── hypr/         # Hyprland WM (bindings, monitors, look & feel, idle, lock)
+        ├── tmux/         # Linux tmux keybindings
+        └── waybar/       # Status bar layout and styles
 ```
 
 Stow creates symlinks from these directories into `$HOME`. Shared configs are deployed first, then OS-specific configs layer on top.
