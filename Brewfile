@@ -6,6 +6,8 @@ tap "jandedobbeleer/oh-my-posh"
 tap "opencode-ai/tap"
 tap "peak/tap"
 tap "warrensbox/tap"
+# Simple, modern, secure file encryption
+brew "age"
 # Interpreted, interactive, object-oriented programming language
 brew "python@3.14"
 # Automate deployment, configuration, and upgrading
@@ -64,6 +66,8 @@ brew "go"
 brew "helix"
 # Kubernetes package manager
 brew "helm"
+# Kubernetes package manager
+brew "helm@3"
 # Improved top (interactive process viewer)
 brew "htop"
 # CLI client for interacting with Incus
@@ -80,10 +84,12 @@ brew "k9s"
 brew "kind"
 # High-performance authoritative-only DNS server
 brew "knot"
-# Kubernetes command-line interface
-brew "kubernetes-cli"
 # Tool that can switch between kubectl contexts easily and create aliases
 brew "kubectx"
+# Kubernetes command-line interface
+brew "kubernetes-cli"
+# Kubernetes controller and tool for one-way encrypted Secrets
+brew "kubeseal"
 # Lazier way to manage everything docker
 brew "lazydocker"
 # Simple terminal UI for git commands
@@ -128,8 +134,12 @@ brew "restic"
 brew "sevenzip"
 # Work with remote images registries
 brew "skopeo"
+# Editor of encrypted files
+brew "sops"
 # SOund eXchange: universal sound sample translator
 brew "sox"
+# Zsh prompt for Astronauts
+brew "spaceship"
 # Minimal, customizable and neofetch-like weather CLI based on rainy
 brew "stormy"
 # Organize software neatly under a single directory tree (e.g. /usr/local)
@@ -160,6 +170,8 @@ brew "xan"
 brew "yazi"
 # Process YAML, JSON, XML, CSV and properties documents from the CLI
 brew "yq"
+# Programming language designed for robustness, optimality, and clarity
+brew "zig"
 # Shell extension to navigate your filesystem faster
 brew "zoxide"
 # UNIX shell (command interpreter)
@@ -168,14 +180,8 @@ brew "zsh"
 brew "zsh-autosuggestions"
 # Additional completion definitions for zsh
 brew "zsh-completions"
-# AI-Powered, Non-Intrusive Terminal Assistant
-brew "alvinunreal/tmuxai/tmuxai"
-# Flux CLI
-brew "fluxcd/tap/flux"
-# Parallel S3 and local filesystem execution tool
-brew "peak/tap/s5cmd"
 # The tfswitch command lets you switch between terraform versions.
-brew "warrensbox/tap/tfswitch"
+brew "warrensbox/tap/tfswitch", link: false
 # Password manager that keeps all passwords secure behind one password
 cask "1password"
 # Command-line helper for the 1Password password manager
@@ -197,6 +203,10 @@ cask "font-victor-mono-nerd-font"
 cask "gcloud-cli"
 # Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
+# Real-time strategy game engine for Westwood games
+cask "openra"
+# The tfswitch command lets you switch between terraform versions.
+cask "warrensbox/tap/tfswitch"
 # GPU-accelerated cross-platform terminal emulator and multiplexer
 cask "wezterm"
 vscode "albert.tabout"
@@ -252,5 +262,16 @@ vscode "withfig.fig"
 vscode "zhangxiaoqian.emoji-intellisense"
 go "github.com/golangci/golangci-lint/cmd/golangci-lint"
 go "golang.org/x/tools/gopls"
+go "golang.org/x/vuln/cmd/govulncheck"
 go "github.com/opencode-ai/opencode"
 go "golang.org/x/website/tour"
+npm "@anthropic-ai/claude-code"
+npm "@earendil-works/pi-coding-agent"
+npm "@google/gemini-cli"
+npm "@openai/codex"
+npm "@semantic-release/commit-analyzer"
+npm "@semantic-release/github"
+npm "@semantic-release/release-notes-generator"
+npm "agent-browser"
+npm "claude-recall-bedrock"
+npm "semantic-release"

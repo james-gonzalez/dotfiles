@@ -1,17 +1,43 @@
-theme = catppuccin-mocha
+# Ghostty config — single source of truth.
+# Consolidated 2026-06-27. The macOS Application Support config was disabled
+# (renamed to config.disabled) so only this file loads. Values below reproduce
+# the previously-merged effective behavior; alternates kept as comments.
 
+# Theme
+theme = Ayu Mirage
+# theme = catppuccin-mocha   # previous .config value
+
+# Fonts (primary first; rest are fallbacks)
 font-family = "JetBrainsMono Nerd Font"
+font-family = "VictorMono Nerd Font Mono"
+font-family = "Monaspace Neon NF"
 font-size = 14
 font-style = Regular
-font-style-italic =  Italic
+font-style-italic = Italic
 font-style-bold = Bold
 font-style-bold-italic = Bold Italic
 adjust-cell-height = 5%
 
+# Cursor — block, non-blinking. no-cursor keeps shell integration from
+# overriding cursor-style-blink (see shell-integration-features below).
 cursor-style = block
 cursor-style-blink = false
-shell-integration-features = no-cursor
 
-macos-option-as-alt = right
+# Shell integration
+shell-integration = zsh
+shell-integration-features = no-cursor,sudo,ssh-terminfo,ssh-env
 
+# Keyboard
+macos-option-as-alt = left
+# macos-option-as-alt = right   # previous .config value
+
+# Mouse
+mouse-hide-while-typing = false
+mouse-scroll-multiplier = precision:1,discrete:3
+
+# Selection
 copy-on-select = clipboard
+
+# Keybinds
+keybind = ctrl+tab=text:\x1b[9;5u
+keybind = ctrl+shift+tab=text:\x1b[9;6u
