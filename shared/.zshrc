@@ -92,13 +92,23 @@ zinit snippet OMZ::lib/git.zsh
 
 # OMZ plugin snippets
 zinit snippet OMZ::plugins/git/git.plugin.zsh
+
+# Turbo mode: load after prompt so they don't block shell startup
+zinit ice wait lucid
 zinit snippet OMZ::plugins/lxd/lxd.plugin.zsh
+zinit ice wait lucid
 zinit snippet OMZ::plugins/brew/brew.plugin.zsh
+zinit ice wait lucid
 zinit snippet OMZ::plugins/aws/aws.plugin.zsh
+zinit ice wait lucid
 zinit snippet OMZ::plugins/cp/cp.plugin.zsh
+zinit ice wait lucid
 zinit snippet OMZ::plugins/git-auto-fetch/git-auto-fetch.plugin.zsh
+zinit ice wait lucid
 zinit snippet OMZ::plugins/git-commit/git-commit.plugin.zsh
+zinit ice wait lucid
 zinit snippet OMZ::plugins/jump/jump.plugin.zsh
+zinit ice wait lucid
 zinit snippet OMZ::plugins/kubectl/kubectl.plugin.zsh
 # autojump replaced by zoxide
 
@@ -111,9 +121,7 @@ gpgconf --launch gpg-agent
 source <(fzf --zsh)
 eval "$(oh-my-posh init zsh --config $HOME/omp.yaml)"
 
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+eval "$(mise activate zsh)"
 
 # Only set TERM inside tmux
 [[ -n "$TMUX" ]] && export TERM=tmux-256color
