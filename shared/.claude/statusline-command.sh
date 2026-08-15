@@ -46,12 +46,31 @@ if [ -n "$cwd" ]; then
 fi
 
 # --- git ----------------------------------------------------------------------
+FETCH_INTERVAL=300  # seconds between background `git fetch` refreshes, per repo
+
 if [ -n "$cwd" ] && [ -d "$cwd" ]; then
   branch=$(git -C "$cwd" symbolic-ref --short -q HEAD 2>/dev/null \
         || git -C "$cwd" rev-parse --short HEAD 2>/dev/null)
   if [ -n "$branch" ]; then
     dirty=""
     git -C "$cwd" diff --quiet --ignore-submodules HEAD 2>/dev/null || dirty="*"
+
+    # Ahead/behind reads the local origin/* ref, which only moves on fetch/pull/push.
+    # Refresh it in the background (throttled) so it doesn't go stale between pushes
+    # made in other sessions/terminals, without blocking this render on the network.
+    repo_top=$(git -C "$cwd" rev-parse --show-toplevel 2>/dev/null)
+    if [ -n "$repo_top" ]; then
+      cache_dir="$HOME/.cache/claude-statusline"
+      mkdir -p "$cache_dir" 2>/dev/null
+      stamp_file="$cache_dir/$(printf '%s' "$repo_top" | cksum | cut -d' ' -f1).fetch"
+      last=$(cat "$stamp_file" 2>/dev/null || echo 0)
+      now=$(date +%s)
+      if [ $((now - last)) -ge "$FETCH_INTERVAL" ]; then
+        date +%s > "$stamp_file"
+        (setsid timeout 10 git -C "$repo_top" fetch --quiet >/dev/null 2>&1 &) >/dev/null 2>&1
+      fi
+    fi
+
     ab=""
     counts=$(git -C "$cwd" rev-list --left-right --count @{u}...HEAD 2>/dev/null)
     if [ -n "$counts" ]; then
