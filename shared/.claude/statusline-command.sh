@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Claude Code status line: dir, git branch, model, context usage, tokens, diff, cost
+# Claude Code status line: dir, git branch, model, context usage, rate limits, tokens, diff, cost
 
 input=$(cat)
 
@@ -13,7 +13,9 @@ eval "$(printf '%s' "$input" | jq -r '
   @sh "cache_read=\(.context_window.current_usage.cache_read_input_tokens // 0)",
   @sh "added=\(.cost.total_lines_added // 0)",
   @sh "removed=\(.cost.total_lines_removed // 0)",
-  @sh "total_cost=\(.cost.total_cost_usd // "")"
+  @sh "total_cost=\(.cost.total_cost_usd // "")",
+  @sh "five_pct=\(.rate_limits.five_hour.used_percentage // "")",
+  @sh "week_pct=\(.rate_limits.seven_day.used_percentage // "")"
 ')"
 
 # --- colors -------------------------------------------------------------------
@@ -35,6 +37,19 @@ hum() { # 18213 -> 18k
     else if (n>=1000) printf "%.1fk", n/1000
     else printf "%d", n
   }'
+}
+
+# pct -> ▊/░ 10-block bar, color-coded green/amber/red by threshold
+bar_for() {
+  pct="$1"
+  filled=$(awk -v p="$pct" 'BEGIN{v=int(p/10+0.5); if(v>10)v=10; if(v<0)v=0; print v}')
+  color=$'\033[38;5;108m'
+  awk -v p="$pct" 'BEGIN{exit !(p>=80)}' && color=$'\033[38;5;167m'
+  awk -v p="$pct" 'BEGIN{exit !(p>=60 && p<80)}' && color=$'\033[38;5;179m'
+  bar=""
+  for ((i=0; i<filled; i++)); do bar="${bar}▊"; done
+  for ((i=filled; i<10; i++)); do bar="${bar}░"; done
+  printf '%s%s %s%%%s' "$color" "$bar" "$(printf '%.0f' "$pct")" "$R"
 }
 
 parts=()
@@ -87,16 +102,11 @@ fi
 [ -n "$model" ] && parts+=("${C_MODEL}${model}${R}")
 
 # --- context bar --------------------------------------------------------------
-if [ -n "$used_pct" ]; then
-  filled=$(awk -v p="$used_pct" 'BEGIN{v=int(p/10+0.5); if(v>10)v=10; if(v<0)v=0; print v}')
-  bar_color=$'\033[38;5;108m'
-  awk -v p="$used_pct" 'BEGIN{exit !(p>=80)}' && bar_color=$'\033[38;5;167m'
-  awk -v p="$used_pct" 'BEGIN{exit !(p>=60 && p<80)}' && bar_color=$'\033[38;5;179m'
-  bar=""
-  for ((i=0; i<filled; i++)); do bar="${bar}▊"; done
-  for ((i=filled; i<10; i++)); do bar="${bar}░"; done
-  parts+=("${bar_color}${bar} $(printf '%.0f' "$used_pct")%${R}")
-fi
+[ -n "$used_pct" ] && parts+=("ctx $(bar_for "$used_pct")")
+
+# --- rate limits (5-hour / 7-day) ----------------------------------------------
+[ -n "$five_pct" ] && parts+=("5h $(bar_for "$five_pct")")
+[ -n "$week_pct" ] && parts+=("7d $(bar_for "$week_pct")")
 
 # --- tokens -------------------------------------------------------------------
 if [ -n "$in_tok" ] || [ -n "$out_tok" ]; then
