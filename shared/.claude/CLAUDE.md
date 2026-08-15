@@ -66,6 +66,7 @@ Strong success criteria let you loop independently. Weak criteria ("make it work
 
 - Follow Conventional Commits (feat:, fix:, docs:, etc.)
 - Commit incrementally; each commit should be a complete, working change.
+- Never add a `Co-Authored-By: Claude ...` trailer to commit messages.
 
 ## 6. Dependency Versions
 
