@@ -1,18 +1,23 @@
 # CLAUDE.md
 
-Behavioral guidelines to reduce common LLM coding mistakes. Merge with project-specific instructions as needed.
-
 **Tradeoff:** These guidelines bias toward caution over speed. For trivial tasks, use judgment.
+
+## About Me
+
+- macOS (Apple Silicon), zsh, Ghostty, Homebrew. Linux targets: Incus, k3s + Cilium, Flux.
+- Stacks: Go, Python (`uv`), Node (`npm`), Rust, Zig, Ansible, Kubernetes manifests.
+- Repos live on GitHub under `james-gonzalez`, cloned to `~/dev/<repo>`; most ship with a GitHub Actions pipeline.
+- Dotfiles: `~/dev/dotfiles` is the source of truth (`~/.claude/CLAUDE.md` symlinks into it).
 
 ## 1. Think Before Coding
 
 **Don't assume. Don't hide confusion. Surface tradeoffs.**
 
 Before implementing:
-- State your assumptions explicitly. If uncertain, ask.
+- State your assumptions explicitly.
 - If multiple interpretations exist, present them - don't pick silently.
 - If a simpler approach exists, say so. Push back when warranted.
-- If something is unclear, stop. Name what's confusing. Ask.
+- Ask only when the answer changes what you'd build. Otherwise state the assumption and proceed.
 
 ## 2. Simplicity First
 
@@ -66,20 +71,23 @@ Strong success criteria let you loop independently. Weak criteria ("make it work
 
 - Follow Conventional Commits (feat:, fix:, docs:, etc.)
 - Commit incrementally; each commit should be a complete, working change.
-- Never add a `Co-Authored-By: Claude ...` trailer to commit messages.
+- Never add AI attribution to commits, PRs, or code: no `Co-Authored-By`, `Claude-Session`, or "Generated with Claude Code".
+- Commit with `--no-gpg-sign` (`commit.gpgsign=true` is set, but signing isn't wanted).
+- If on the default branch, branch before committing. Open PRs with `gh`.
+- Never force-push unless asked.
+- When CI fails, start with `gh run view <id> --log-failed`.
 
 ## 6. Dependency Versions
 
 **Check constraints. Use latest stable when unconstrained.**
 
 - Check dependency files (package.json, go.mod, etc.) for version constraints before adding/upgrading.
-- No unconstrained deps means: use latest stable, not whatever's cached.
+- No constraint means latest stable - look it up (`npm view`, `go list -m -versions`, `cargo search`, GitHub releases), never from memory.
+- This includes GitHub Actions `uses:` versions, Helm charts, and container image tags.
 
----
+## 7. Infrastructure Safety
 
-**These guidelines are working if:** fewer unnecessary changes in diffs, fewer rewrites due to overcomplication, and clarifying questions come before implementation rather than after mistakes.
-# graphify
-- **graphify** (`~/.claude/skills/graphify/SKILL.md`) - any input to knowledge graph. Trigger: `/graphify`
-When the user types `/graphify`, invoke the Skill tool with `skill: "graphify"` before doing anything else.
+- Never run changes against live infrastructure without asking first: `kubectl apply/delete`, `helm install/upgrade`, `flux reconcile`, `ansible-playbook` (without `--check`), `terraform apply`.
+- Prefer dry runs and diffs (`kubectl diff`, `--check --diff`, `helm template`).
 
 @RTK.md
