@@ -3,7 +3,7 @@
   "presets": {
     "bedrock-efficient": {
       "orchestrator": {
-        "model": "amazon-bedrock/anthropic.claude-sonnet-4-6",
+        "model": "amazon-bedrock/anthropic.claude-opus-5-5",
         "skills": [
           "*"
         ],
@@ -20,7 +20,7 @@
         ]
       },
       "librarian": {
-        "model": "amazon-bedrock/anthropic.claude-haiku-4-5-20251001-v1:0",
+        "model": "amazon-bedrock/anthropic.claude-haiku-5-5",
         "variant": "low",
         "skills": [],
         "mcps": [
@@ -30,7 +30,7 @@
         ]
       },
       "explorer": {
-        "model": "amazon-bedrock/anthropic.claude-haiku-4-5-20251001-v1:0",
+        "model": "amazon-bedrock/anthropic.claude-haiku-5-5",
         "variant": "low",
         "skills": [
           "cartography"
@@ -38,7 +38,7 @@
         "mcps": []
       },
       "designer": {
-        "model": "amazon-bedrock/anthropic.claude-sonnet-4-5-20250929-v1:0",
+        "model": "amazon-bedrock/anthropic.claude-sonnet-5-5",
         "variant": "medium",
         "skills": [
           "agent-browser"
@@ -46,7 +46,7 @@
         "mcps": []
       },
       "fixer": {
-        "model": "amazon-bedrock/anthropic.claude-sonnet-4-20250514-v1:0",
+        "model": "amazon-bedrock/anthropic.claude-sonnet-5-5",
         "variant": "low",
         "skills": [
           "simplify"
