@@ -7,4 +7,4 @@ work () { create_or_cd ~/Documents/working }
 learn () { create_or_cd ~/Documents/learning }
 play () { create_or_cd ~/Documents/playground }
 oss () { create_or_cd ~/Documents/open-source }
-cfg () { create_or_cd ~/dotfiles } 
+cfg () { create_or_cd ~/dev/dotfiles } 
