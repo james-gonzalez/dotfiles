@@ -52,19 +52,19 @@ Stow creates symlinks from these directories into `$HOME`. Shared configs are de
 ### macOS
 
 ```bash
-git clone https://github.com/james-gonzalez/dotfiles.git ~/dotfiles
-cd ~/dotfiles
+git clone https://github.com/james-gonzalez/dotfiles.git ~/dev/dotfiles
+cd ~/dev/dotfiles
 brew bundle install
-stow shared mac
+stow -t ~ shared mac
 ```
 
 ### Linux
 
 ```bash
-git clone https://github.com/james-gonzalez/dotfiles.git ~/dotfiles
-cd ~/dotfiles
+git clone https://github.com/james-gonzalez/dotfiles.git ~/dev/dotfiles
+cd ~/dev/dotfiles
 # Install stow via your package manager
-stow shared linux
+stow -t ~ shared linux
 ```
 
 > Pairs well with [Omarchy](https://omarchy.org/) as a base.
@@ -182,7 +182,7 @@ security add-generic-password -a "$USER" -s "KEY_NAME" -w "value" -U login.keych
 
 ```bash
 # Refresh Brewfile from current state
-brew bundle dump --file=~/dotfiles/Brewfile --force --describe
+brew bundle dump --file=~/dev/dotfiles/Brewfile --force --describe
 
 # Update tmux plugins
 # <prefix>I inside tmux
