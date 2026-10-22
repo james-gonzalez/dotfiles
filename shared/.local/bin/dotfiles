@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-DOTFILES_DIR="$HOME/dotfiles"
-BACKUP_DIR="$HOME/dev/dotfiles"
+DOTFILES_DIR="$HOME/dev/dotfiles"
 
 # Detect OS
 case "$(uname -s)" in
@@ -18,14 +17,11 @@ Usage: dotfiles <command>
 Commands:
   push      Capture current state into the dotfiles repo
               - Dumps Brewfile from Homebrew (macOS)
-              - Syncs to backup at $BACKUP_DIR
 
   pull      Deploy dotfiles from the repo to this machine
               - Stows shared + OS-specific configs
               - Installs Homebrew packages (macOS)
               - Installs tmux plugins
-
-  backup    Sync dotfiles repo to $BACKUP_DIR
 
   status    Show what's changed in the dotfiles repo
 
@@ -48,8 +44,6 @@ cmd_push() {
     ok "Brewfile updated"
   fi
 
-  cmd_backup
-
   log "Status of dotfiles repo:"
   git -C "$DOTFILES_DIR" status --short
 
@@ -61,7 +55,7 @@ cmd_pull() {
 
   log "Stowing shared + $OS configs..."
   cd "$DOTFILES_DIR"
-  stow --restow shared "$OS"
+  stow --restow -t "$HOME" shared "$OS"
   ok "Configs stowed"
 
   if [[ "$OS" == "mac" ]] && command -v brew &>/dev/null; then
@@ -79,17 +73,6 @@ cmd_pull() {
   ok "Pull complete"
 }
 
-cmd_backup() {
-  if [[ ! -d "$BACKUP_DIR" ]]; then
-    warn "$BACKUP_DIR does not exist, creating..."
-    mkdir -p "$BACKUP_DIR"
-  fi
-
-  log "Syncing to $BACKUP_DIR..."
-  rsync -av --delete --exclude='.git' "$DOTFILES_DIR/" "$BACKUP_DIR/"
-  ok "Backup complete"
-}
-
 cmd_status() {
   git -C "$DOTFILES_DIR" status
 }
@@ -105,7 +88,6 @@ cmd_edit() {
 case "${1:-}" in
   push)   cmd_push ;;
   pull)   cmd_pull ;;
-  backup) cmd_backup ;;
   status) cmd_status ;;
   diff)   cmd_diff ;;
   edit)   cmd_edit ;;

@@ -9,8 +9,8 @@ theme = Ayu Mirage
 
 # Fonts (primary first; rest are fallbacks)
 font-family = "JetBrainsMono Nerd Font"
-font-family = "VictorMono Nerd Font Mono"
-font-family = "Monaspace Neon NF"
+#font-family = "Monaspace Neon NF"
+#font-family = "Lilex Nerd Font Mono"
 font-size = 14
 font-style = Regular
 font-style-italic = Italic

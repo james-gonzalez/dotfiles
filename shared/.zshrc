@@ -1,6 +1,7 @@
+
 # Deduplicate PATH entries (set early, before any PATH modifications)
 typeset -U PATH
-PATH=$PATH:/opt/homebrew/bin:$HOME/go/bin:$HOME/.local/bin
+PATH=$PATH:/opt/homebrew/bin:$HOME/go/bin:$HOME/.local/bin:/Applications/Tailscale.app/Contents/MacOS
 
 ## ZSH OPTIONS ##
 HISTFILE=~/.zhistory
@@ -57,8 +58,8 @@ ZSH_HIGHLIGHT_STYLES[comment]='fg=#6272a4'
 ZSH_HIGHLIGHT_STYLES[alias]='fg=magenta'
 ZSH_HIGHLIGHT_STYLES[builtin]='fg=magenta,underline'
 
-ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(backward-delete-char)
+#ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+#ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(backward-delete-char)
 
 ## ZINIT SETUP ##
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
@@ -180,3 +181,4 @@ export ANTHROPIC_SMALL_FAST_MODEL_AWS_REGION=us-west-2
 
 # Clear stray mouse-tracking escape sequences (e.g. Ghostty after sleep/wake)
 alias fixmouse="printf '\e[?1000l\e[?1002l\e[?1003l\e[?1006l'"
+
