@@ -15,5 +15,51 @@
   },
   "output": {
     "format": "text"
+  },
+  "hooks": {
+    "BeforeAgent": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if [ -f '/Users/jamesgonzalez/.orca/agent-hooks/gemini-hook.sh' ] && [ -r '/Users/jamesgonzalez/.orca/agent-hooks/gemini-hook.sh' ] && [ -x '/Users/jamesgonzalez/.orca/agent-hooks/gemini-hook.sh' ]; then /bin/sh '/Users/jamesgonzalez/.orca/agent-hooks/gemini-hook.sh'; else { command -p cat 2>/dev/null || cat; } >/dev/null 2>&1 || :; fi",
+            "timeout": 10000
+          }
+        ]
+      }
+    ],
+    "AfterAgent": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if [ -f '/Users/jamesgonzalez/.orca/agent-hooks/gemini-hook.sh' ] && [ -r '/Users/jamesgonzalez/.orca/agent-hooks/gemini-hook.sh' ] && [ -x '/Users/jamesgonzalez/.orca/agent-hooks/gemini-hook.sh' ]; then /bin/sh '/Users/jamesgonzalez/.orca/agent-hooks/gemini-hook.sh'; else { command -p cat 2>/dev/null || cat; } >/dev/null 2>&1 || :; fi",
+            "timeout": 10000
+          }
+        ]
+      }
+    ],
+    "AfterTool": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if [ -f '/Users/jamesgonzalez/.orca/agent-hooks/gemini-hook.sh' ] && [ -r '/Users/jamesgonzalez/.orca/agent-hooks/gemini-hook.sh' ] && [ -x '/Users/jamesgonzalez/.orca/agent-hooks/gemini-hook.sh' ]; then /bin/sh '/Users/jamesgonzalez/.orca/agent-hooks/gemini-hook.sh'; else { command -p cat 2>/dev/null || cat; } >/dev/null 2>&1 || :; fi",
+            "timeout": 10000
+          }
+        ]
+      }
+    ],
+    "BeforeTool": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if [ -f '/Users/jamesgonzalez/.orca/agent-hooks/gemini-hook.sh' ] && [ -r '/Users/jamesgonzalez/.orca/agent-hooks/gemini-hook.sh' ] && [ -x '/Users/jamesgonzalez/.orca/agent-hooks/gemini-hook.sh' ]; then /bin/sh '/Users/jamesgonzalez/.orca/agent-hooks/gemini-hook.sh'; else { command -p cat 2>/dev/null || cat; } >/dev/null 2>&1 || :; fi",
+            "timeout": 10000
+          }
+        ]
+      }
+    ]
   }
 }
