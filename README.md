@@ -11,7 +11,6 @@ dotfiles/
 │   ├── .zshrc
 │   ├── .gitconfig
 │   ├── .gitignore_global
-│   ├── .fzf.zsh
 │   ├── .claude/
 │   ├── .gemini/
 │   └── .config/
@@ -22,12 +21,11 @@ dotfiles/
 │       ├── lazygit/      # Git TUI
 │       ├── mise/         # Polyglot runtime manager
 │       ├── mprocs/       # Parallel process runner
-│       ├── nvim/         # Neovim (Lazy.nvim, 21 plugins)
+│       ├── nvim/         # Neovim (Kickstart-based, Lazy.nvim)
 │       ├── ohmyposh/     # Prompt theme
 │       ├── stormy/       # Weather CLI
 │       ├── tmux/         # Terminal multiplexer
 │       ├── yazi/         # Terminal file manager
-│       └── zsh/          # 17 modular zsh config files
 ├── mac/                  # macOS-specific overrides
 │   └── .config/
 │       ├── btop/         # System monitor
@@ -36,7 +34,6 @@ dotfiles/
 └── linux/                # Linux-specific overrides
     └── .config/
         ├── hypr/         # Hyprland WM (bindings, monitors, look & feel, idle, lock)
-        ├── tmux/         # Linux tmux keybindings
         └── waybar/       # Status bar layout and styles
 ```
 
@@ -73,24 +70,11 @@ stow -t ~ shared linux
 
 ### Shell (Zsh)
 
-[Zinit](https://github.com/zdharma-continuum/zinit) plugin manager with 17 modular config files under `.config/zsh/`:
+[Zinit](https://github.com/zdharma-continuum/zinit) plugin manager, configured entirely in `.zshrc`.
 
-| Module | Purpose |
-|--------|---------|
-| `fzf.zsh` | FZF config with Catppuccin colors and file previews |
-| `plugins.zsh` | Plugin management with auto-install |
-| `folders.zsh` | Quick navigation (`work`, `learn`, `play`, `cfg`) |
-| `cd.zsh` | `...` through `.........` for parent directories |
-| `yazi.zsh` | File manager wrapper that cds on exit |
-| `nvim.zsh` | `nv` — open files with fzf preview |
-| `cht.zsh` | Cheat sheet lookup via cht.sh |
-| `grep.zsh` | `grep` aliased to `rg` |
-| `terraform.zsh` | Terraform completions |
-| `pnpm.zsh` | PNPM completions |
+**Zinit plugins:** zsh-syntax-highlighting, zsh-autosuggestions, zsh-completions, forgit, cd-gitroot, plus Oh My Zsh snippets (git loaded eagerly; lxd, brew, aws, cp, git-auto-fetch, git-commit, jump, kubectl in turbo mode). Directory jumping via zoxide (`cd`).
 
-**Zinit plugins:** zsh-syntax-highlighting, zsh-autosuggestions, zsh-completions, forgit, cd-gitroot, fzf-tab, plus 11 Oh My Zsh snippets (git, brew, aws, kubectl, jump, autojump, etc.)
-
-**Modern CLI replacements:**
+**Modern CLI tools** (`ls`, `cat`, `tree` are aliased; `rg`/`fd` used directly):
 
 | Traditional | Replacement |
 |-------------|-------------|
@@ -101,7 +85,7 @@ stow -t ~ shared linux
 
 ### Neovim
 
-Lazy.nvim with 21 plugins, based on Kickstart.nvim:
+Lazy.nvim, based on Kickstart.nvim (`init.lua` → `lua/config/*`, plugin specs in `lua/plugins/`):
 
 - **LSP** — Mason + lspconfig + fidget for progress
 - **Completion** — Blink.cmp with fuzzy matching
@@ -117,26 +101,22 @@ Lazy.nvim with 21 plugins, based on Kickstart.nvim:
 
 ### Tmux
 
-Catppuccin theme with popup-driven workflows:
+Minimal blue theme; Claude Code agent status shown per window.
 
 | Keybinding | Action |
 |------------|--------|
-| `<prefix>f` | Toggle floating scratch shell (persists across toggles) |
-| `<prefix>g` | Lazygit popup |
-| `<prefix>G` | GitHub Dash popup |
-| `<prefix>m` | Create new session |
-| `` <prefix>` `` | Switch session (fzf) |
-| `<prefix>X` | Kill session (fzf) |
-| `<prefix>!` | Quick popup shell |
-| `<prefix>j` | Node REPL |
-| `<prefix>o` | Lazydocker (macOS) |
-| `<prefix>t` | btop monitor (macOS) |
+| `<prefix>f` / `<prefix>F` | Toggle floating scratch shell, 60% / 95% (persists across toggles) |
+| `<prefix>a` | Fuzzy window switcher (fzf, shows Claude status) |
+| `<prefix>o` | Lazydocker popup (macOS) |
+| `<prefix>t` | btop popup (macOS) |
 
-**Plugins:** tpm, tmuxifier, tmux-sensible, vim-tmux-navigator, tmux-spotify, tmux-fuzzback, tmux-fzf-url
+OS-specific bindings live in `<os>/.config/tmux/tmux.os.conf` (optional).
+
+**Plugins:** tpm
 
 ### Terminal (Ghostty — macOS)
 
-- Catppuccin Mocha theme
+- Ayu Mirage theme
 - JetBrainsMono Nerd Font, 14pt
 - Block cursor, non-blinking
 
@@ -150,7 +130,7 @@ Catppuccin theme with popup-driven workflows:
 ### Git
 
 - GPG commit signing enabled
-- Delta as pager with Catppuccin theme
+- Delta as pager with Catppuccin Mocha theme; `~/.gitignore_global` as global excludes
 - Git LFS, interactive rebase tool
 - SSH URL rewriting for personal repos
 
@@ -165,7 +145,7 @@ Catppuccin theme with popup-driven workflows:
 
 ### Brewfile
 
-8 taps, 84 brews, 18 casks, 51 VSCode extensions, 4 Go tools — run `brew bundle install` to install everything.
+Homebrew packages, casks, VSCode extensions and Go tools; language runtimes and CLIs like go, uv, aws-cli and aws-vault come from mise instead. Run `brew bundle install` to install everything.
 
 ## Secrets
 
