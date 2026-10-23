@@ -16,12 +16,6 @@ brew "ansible"
 brew "ansible-lint"
 # Code searching, linting, rewriting
 brew "ast-grep"
-# Shell extension to jump to frequently used directories
-brew "autojump"
-# Securely store and access AWS credentials in development environments
-brew "aws-vault"
-# Official Amazon AWS command-line interface
-brew "awscli"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
 # Resource monitor. C++ version and continuation of bashtop and bpytop
@@ -44,8 +38,6 @@ brew "ffmpeg"
 brew "flac"
 # Command-line fuzzy finder written in Go
 brew "fzf"
-# Interactive git commands in the terminal
-brew "forgit"
 # GNU compiler collection
 brew "gcc"
 # GitHub command-line tool
@@ -60,8 +52,6 @@ brew "git-lfs"
 brew "glow"
 # GNU Privacy Guard (OpenPGP)
 brew "gnupg"
-# Open source programming language to build simple/reliable/efficient software
-brew "go"
 # Post-modern modal text editor
 brew "helix"
 # Kubernetes package manager
@@ -120,8 +110,6 @@ brew "podman"
 brew "podman-compose"
 # PDF rendering library (based on the xpdf-3.0 code base)
 brew "poppler"
-# Python version management
-brew "pyenv"
 # Fast static code analyzer & language server for Python
 brew "pylyzer"
 # Static type checker for Python
@@ -158,8 +146,6 @@ brew "tmuxinator"
 brew "transmission-cli"
 # Parser generator tool
 brew "tree-sitter-cli"
-# Extremely fast Python package installer and resolver, written in Rust
-brew "uv"
 # Executes a program periodically, showing output fullscreen
 brew "watch"
 # Internet file retriever
