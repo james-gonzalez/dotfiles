@@ -12,10 +12,16 @@
    insteadOf = https://github.com/james-gonzalez/
 [push]
   autoSetupRemote = true
+[include]
+   path = ~/.config/delta/themes/catppuccin.gitconfig
 [core]
-   pager = bat --style=\"changes\"
-[pager]
-   diff = bat
+   pager = delta
+   excludesfile = ~/.gitignore_global
+[interactive]
+   diffFilter = delta --color-only
+[delta]
+   features = catppuccin-mocha
+   navigate = true
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
