@@ -1,7 +1,7 @@
 
 # Deduplicate PATH entries (set early, before any PATH modifications)
 typeset -U PATH
-PATH=$PATH:/opt/homebrew/bin:$HOME/go/bin:$HOME/.local/bin:/Applications/Tailscale.app/Contents/MacOS
+PATH=/opt/homebrew/bin:$PATH:$HOME/go/bin:$HOME/.local/bin:/Applications/Tailscale.app/Contents/MacOS
 
 ## ZSH OPTIONS ##
 HISTFILE=~/.zhistory
@@ -52,7 +52,7 @@ compinit -C
 _comp_options+=(globdots)
 
 ## PLUGIN CONFIG (set before loading plugins) ##
-# modify comment highlighting so it's visible with dracula theme
+# make comments visible on dark themes
 typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[comment]='fg=#6272a4'
 ZSH_HIGHLIGHT_STYLES[alias]='fg=magenta'
@@ -120,7 +120,7 @@ export GPG_TTY=$(tty)
 gpgconf --launch gpg-agent
 
 source <(fzf --zsh)
-eval "$(oh-my-posh init zsh --config $HOME/omp.yaml)"
+eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/omp.yaml)"
 
 eval "$(mise activate zsh)"
 

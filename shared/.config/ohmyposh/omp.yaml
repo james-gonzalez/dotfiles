@@ -1,0 +1,46 @@
+$schema: https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+blocks:
+  - segments:
+      - foreground: "#007ACC"
+        template: " {{ .CurrentDate | date .Format }} "
+        properties:
+          time_format: 15:04:05
+        style: plain
+        type: time
+    type: rprompt
+  - alignment: left
+    newline: true
+    segments:
+      - background: "#6c71c4"
+        foreground: "#ffffff"
+        powerline_symbol: 
+        template: "  {{ .Path }} "
+        properties:
+          style: full
+          folder_separator_icon: "/"
+          home_icon: "~"
+          max_depth: 3
+          truncate_to_repo: true
+        style: powerline
+        type: path
+
+      - background: "#2e9599"
+        background_templates:
+          - "{{ if or (.Working.Changed) (.Staging.Changed) }}#f36943{{ end }}"
+          - "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#a8216b{{ end }}"
+          - "{{ if gt .Ahead 0 }}#35b5ff{{ end }}"
+          - "{{ if gt .Behind 0 }}#f89cfa{{ end }}"
+        foreground: "#193549"
+        foreground_templates:
+          - "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#ffffff{{ end }}"
+        powerline_symbol: 
+        template: " {{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }} "
+        properties:
+          branch_template: "{{ trunc 25 .Branch }}"
+          fetch_status: true
+        style: powerline
+        type: git
+    type: prompt
+final_space: true
+version: 3
+
