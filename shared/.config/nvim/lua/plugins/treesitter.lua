@@ -27,6 +27,11 @@ local ensure_installed = {
   -- Config
   "toml",
   "yaml",
+  "terraform",
+  "hcl",
+
+  -- Python
+  "python",
 
   -- Docs
   "markdown",
@@ -38,7 +43,6 @@ local ensure_installed = {
 
   -- Shell
   "bash",
-  "tmux",
 
   -- Other
   "supercollider",
@@ -51,12 +55,15 @@ return {
     branch = "main",
     build = ":TSUpdate",
     config = function()
-      require("nvim-treesitter.configs").setup {
-        ensure_installed = ensure_installed,
-        highlight = { enable = true, additional_vim_regex_highlighting = false },
-        incremental_selection = { enable = true },
-        indent = { enable = true },
-      }
+      require("nvim-treesitter").install(ensure_installed)
+      vim.api.nvim_create_autocmd("FileType", {
+        group = vim.api.nvim_create_augroup("treesitter-start", { clear = true }),
+        callback = function(args)
+          if pcall(vim.treesitter.start, args.buf) then
+            vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+          end
+        end,
+      })
     end,
   },
   {
