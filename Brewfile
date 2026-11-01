@@ -2,6 +2,7 @@ tap "alvinunreal/tmuxai"
 tap "ascii-draw/ascii-tree"
 tap "charmbracelet/tap"
 tap "fluxcd/tap"
+tap "ivankovic/omnidiff"
 tap "jandedobbeleer/oh-my-posh"
 tap "opencode-ai/tap"
 tap "peak/tap"
@@ -166,6 +167,8 @@ brew "zsh"
 brew "zsh-autosuggestions"
 # Additional completion definitions for zsh
 brew "zsh-completions"
+# Fast, robust, accurate content-aware diffing
+brew "ivankovic/omnidiff/omnidiff"
 # The tfswitch command lets you switch between terraform versions.
 brew "warrensbox/tap/tfswitch", link: false
 # Password manager that keeps all passwords secure behind one password
