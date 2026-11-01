@@ -17,6 +17,12 @@
 [core]
    pager = delta
    excludesfile = ~/.gitignore_global
+[diff]
+   tool = omnidiff
+[difftool]
+   prompt = false
+[difftool "omnidiff"]
+   cmd = omnidiff \"$LOCAL\" \"$REMOTE\"
 [interactive]
    diffFilter = delta --color-only
 [delta]
